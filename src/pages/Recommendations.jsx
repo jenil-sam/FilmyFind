@@ -9,7 +9,7 @@ function Recommendations() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const FLASK_API = "http://127.0.0.1:5000";
+  const FLASK_API = "https://filmyfind-backend.onrender.com";
 
   useEffect(() => {
     if (!favorites || favorites.length === 0) return;
