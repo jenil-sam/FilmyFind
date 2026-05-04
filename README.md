@@ -1,6 +1,5 @@
 
-# Movie-Recommendation-Web-App
-
+# Filmy Find
 A React-based frontend web application that provides personalized movie recommendations using the TMDb API. The app uses React Context for state management, making it frontend-only with no backend. It features a responsive, interactive UI and fetches real-time movie data.
 
 Live Demo: https://filmyfind.netlify.app/
