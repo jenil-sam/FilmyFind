@@ -70,6 +70,7 @@ def recommend():
 def health():
     return jsonify({"status": "ok"})
 
+fetch_movies()
+
 if __name__ == "__main__":
-    fetch_movies()
     app.run(debug=True)
