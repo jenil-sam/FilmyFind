@@ -50,3 +50,7 @@
   animation: fadeIn 0.3s ease-out forwards;
 }
 
+
+.recommendation-section {
+  margin-bottom: 32px;
+}
