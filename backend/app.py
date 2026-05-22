@@ -82,4 +82,5 @@ end = time.time()
 print(f"Response time: {(end - start) * 1000:.2f}ms")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
