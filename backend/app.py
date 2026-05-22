@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import time
 import os
 
 app = Flask(__name__)
@@ -55,12 +56,19 @@ def recommend():
     if not title:
         return jsonify({"error": "No title provided"}), 400
     matches = movies_df[movies_df["title"].str.lower() == title.lower()]
+
     if matches.empty:
         return jsonify({"error": "Movie not found"}), 404
+    
+    start = time.time()
+
     idx = matches.index[0]
     scores = cosine_similarity(tfidf_matrix[idx], tfidf_matrix).flatten()
-    top_indices = scores.argsort()[::-1][1:7]
+    top_indices = scores.argsort()[::-1][1:11]
     recommendations = movies_df.iloc[top_indices][["id", "title", "overview", "poster_path", "vote_average"]].to_dict(orient="records")
+
+    end = time.time()
+    print(f"Recommendation time: {(end - start) * 1000:.2f}ms")
     return jsonify(recommendations)
 
 @app.route("/health", methods=["GET"])
@@ -69,6 +77,9 @@ def health():
     return jsonify({"status": status, "movies_loaded": len(movies_df) if movies_df is not None else 0})
 
 fetch_movies()
+
+end = time.time()
+print(f"Response time: {(end - start) * 1000:.2f}ms")
 
 if __name__ == "__main__":
     app.run(debug=True)
