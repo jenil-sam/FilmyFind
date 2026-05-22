@@ -78,8 +78,6 @@ def health():
 
 fetch_movies()
 
-end = time.time()
-print(f"Response time: {(end - start) * 1000:.2f}ms")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
